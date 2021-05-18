@@ -1,8 +1,11 @@
 package de.rakia.easyAbiturService.service;
 
+import de.rakia.easyAbiturService.dto.response.ResponseFileMessage;
 import de.rakia.easyAbiturService.model.*;
 import de.rakia.easyAbiturService.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
@@ -122,5 +125,25 @@ public class FileStorageService {
       physikLK_Exam.setYear(year);
       physikLK_exam_repository.save(physikLK_Exam);
     }
+  }
+
+  public MathGK_Exam getMathGK_Exam() {
+    MathGK_Exam exam = mathGK_exam_repository.findAll().get(0);
+    return exam;
+  }
+
+  public MathLK_Exam getMathLK_Exam() {
+    MathLK_Exam exam = mathLK_exam_repository.findAll().get(0);
+    return exam;
+  }
+
+  public PhysikGK_Exam getPhysikGK_Exam() {
+    PhysikGK_Exam exam = physikGK_exam_repository.findAll().get(0);
+    return exam;
+  }
+
+  public PhysikLK_Exam getPhysikLK_Exam() {
+    PhysikLK_Exam exam = physikLK_exam_repository.findAll().get(0);
+    return exam;
   }
 }

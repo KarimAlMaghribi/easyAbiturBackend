@@ -1,7 +1,13 @@
 package de.rakia.easyAbiturService.controller;
 
+import de.rakia.easyAbiturService.model.MathGK_Exam;
+import de.rakia.easyAbiturService.model.MathLK_Exam;
+import de.rakia.easyAbiturService.model.PhysikGK_Exam;
+import de.rakia.easyAbiturService.model.PhysikLK_Exam;
 import de.rakia.easyAbiturService.service.FileStorageService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -13,8 +19,6 @@ public class FileController {
 
     @Autowired
     private FileStorageService storageService;
-
-
 
 /*
     @PostMapping("/upload")
@@ -76,7 +80,7 @@ public class FileController {
 
   @CrossOrigin(origins = "http://localhost:4200")
   //@PostMapping("/titleImage/{id}")
-  @RequestMapping(value = "/upload/mathGK", method = RequestMethod.POST)
+  @RequestMapping(value = "/upload/mathLK", method = RequestMethod.POST)
   public void upload_MathLK_Exam_File(@RequestParam("imageFile") MultipartFile file, @RequestParam("title") String title, @RequestParam("year") int year) throws IOException {
 
     storageService.storeMathLK_Exam(file, title, year);
@@ -85,7 +89,7 @@ public class FileController {
 
   @CrossOrigin(origins = "http://localhost:4200")
   //@PostMapping("/titleImage/{id}")
-  @RequestMapping(value = "/upload/mathGK", method = RequestMethod.POST)
+  @RequestMapping(value = "/upload/physikGK", method = RequestMethod.POST)
   public void upload_PhysikGK_Exam_File(@RequestParam("imageFile") MultipartFile file, @RequestParam("title") String title, @RequestParam("year") int year) throws IOException {
 
     storageService.storePhysikGK_Exam(file, title, year);
@@ -94,11 +98,51 @@ public class FileController {
 
   @CrossOrigin(origins = "http://localhost:4200")
   //@PostMapping("/titleImage/{id}")
-  @RequestMapping(value = "/upload/mathGK", method = RequestMethod.POST)
+  @RequestMapping(value = "/upload/physikLK", method = RequestMethod.POST)
   public void upload_PhysikLK_Exam_File(@RequestParam("imageFile") MultipartFile file, @RequestParam("title") String title, @RequestParam("year") int year) throws IOException {
 
     storageService.storePhysikLK_Exam(file, title, year);
 
+  }
+
+  @GetMapping("/download/mathGK")
+  public ResponseEntity<byte[]> get_MathGK_Exam_File() {
+
+    MathGK_Exam fileDB = storageService.getMathGK_Exam();
+
+    return ResponseEntity.ok()
+      .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + fileDB.getName() + "\"")
+      .body(fileDB.getData());
+  }
+
+  @GetMapping("/download/mathLK")
+  public ResponseEntity<byte[]> get_MathLK_Exam_File() {
+
+    MathLK_Exam fileDB = storageService.getMathLK_Exam();
+
+    return ResponseEntity.ok()
+      .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + fileDB.getName() + "\"")
+      .body(fileDB.getData());
+  }
+
+  @GetMapping("/download/physikGK")
+  public ResponseEntity<byte[]> get_PhysikGK_Exam_File() {
+
+    PhysikGK_Exam fileDB = storageService.getPhysikGK_Exam();
+
+    return ResponseEntity.ok()
+      .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + fileDB.getName() + "\"")
+      .body(fileDB.getData());
+  }
+
+  @GetMapping("/download/physikLK")
+  public ResponseEntity<byte[]> get_PhysikLK_Exam_File() {
+
+    PhysikLK_Exam fileDB = storageService.getPhysikLK_Exam();
+
+    return ResponseEntity.ok()
+      .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + fileDB.getName() + "\"")
+      .body(fileDB.getData());
   }
 
 /*
