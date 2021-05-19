@@ -75,11 +75,9 @@ public class FileStorageService {
     (MultipartFile file, String ident_Id, int year) throws IOException {
     if(!mathLK_exam_repository.existsById(ident_Id)){
       MathLK_Exam mathLK_Exam = new MathLK_Exam();
-
-      mathLK_Exam.setName(file.getName());
+;
       mathLK_Exam.setId(ident_Id);
-      mathLK_Exam.setData(file.getBytes());
-      mathLK_Exam.setType(file.getContentType());
+      mathLK_Exam.setPdf(new FileDB(file.getName(),file.getContentType(), file.getBytes() ));
       mathLK_Exam.setYear(year);
 
      mathLK_exam_repository.save(mathLK_Exam);
@@ -91,10 +89,8 @@ public class FileStorageService {
     if(!mathGK_exam_repository.existsById(ident_Id)){
       MathGK_Exam mathGK_Exam = new MathGK_Exam();
 
-      mathGK_Exam.setName(file.getName());
       mathGK_Exam.setId(ident_Id);
-      mathGK_Exam.setData(file.getBytes());
-      mathGK_Exam.setType(file.getContentType());
+      mathGK_Exam.setPdf(new FileDB(file.getName(),file.getContentType(), file.getBytes() ));
       mathGK_Exam.setYear(year);
 
       mathGK_exam_repository.save(mathGK_Exam);
@@ -105,10 +101,9 @@ public class FileStorageService {
     (MultipartFile file, String ident_Id, int year) throws IOException {
     if(!physikGK_exam_repository.existsById(ident_Id)){
       PhysikGK_Exam physikGK_Exam = new PhysikGK_Exam();
-      physikGK_Exam.setName(file.getName());
+      physikGK_Exam.setPdf(new FileDB(file.getName(),file.getContentType(), file.getBytes() ));
       physikGK_Exam.setId(ident_Id);
-      physikGK_Exam.setData(file.getBytes());
-      physikGK_Exam.setType(file.getContentType());
+      physikGK_Exam.setYear(year);
 
       physikGK_exam_repository.save(physikGK_Exam);
     }
@@ -118,32 +113,30 @@ public class FileStorageService {
     (MultipartFile file, String ident_Id, int year) throws IOException {
     if(!physikLK_exam_repository.existsById(ident_Id)){
       PhysikLK_Exam physikLK_Exam = new PhysikLK_Exam();
-      physikLK_Exam.setName(file.getName());
       physikLK_Exam.setId(ident_Id);
-      physikLK_Exam.setData(file.getBytes());
-      physikLK_Exam.setType(file.getContentType());
+      physikLK_Exam.setPdf(new FileDB(file.getName(),file.getContentType(), file.getBytes() ));
       physikLK_Exam.setYear(year);
       physikLK_exam_repository.save(physikLK_Exam);
     }
   }
 
-  public MathGK_Exam getMathGK_Exam() {
-    MathGK_Exam exam = mathGK_exam_repository.findAll().get(0);
+  public MathGK_Exam getMathGK_Exam(int year) {
+    MathGK_Exam exam = mathGK_exam_repository.findByYear(year);
     return exam;
   }
 
-  public MathLK_Exam getMathLK_Exam() {
-    MathLK_Exam exam = mathLK_exam_repository.findAll().get(0);
+  public MathLK_Exam getMathLK_Exam(int year) {
+    MathLK_Exam exam = mathLK_exam_repository.findByYear(year);
     return exam;
   }
 
-  public PhysikGK_Exam getPhysikGK_Exam() {
-    PhysikGK_Exam exam = physikGK_exam_repository.findAll().get(0);
+  public PhysikGK_Exam getPhysikGK_Exam(int year) {
+    PhysikGK_Exam exam = physikGK_exam_repository.findByYear(year);
     return exam;
   }
 
-  public PhysikLK_Exam getPhysikLK_Exam() {
-    PhysikLK_Exam exam = physikLK_exam_repository.findAll().get(0);
+  public PhysikLK_Exam getPhysikLK_Exam(int year) {
+    PhysikLK_Exam exam = physikLK_exam_repository.findByYear(year);
     return exam;
   }
 }

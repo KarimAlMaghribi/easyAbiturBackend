@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface MathLK_Exam_Repository extends JpaRepository<MathLK_Exam, String> {
-
+  MathLK_Exam findByYear(int year);
 }
