@@ -9,7 +9,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class PhysikLK_Exam_DTO {
+public class PhysikGKExamDTO {
   int year;
   String fileId;
 }

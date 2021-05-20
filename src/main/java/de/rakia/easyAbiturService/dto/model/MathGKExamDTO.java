@@ -10,7 +10,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class MathGK_Exam_DTO {
+public class MathGKExamDTO {
   int year;
   String fileId;
 }

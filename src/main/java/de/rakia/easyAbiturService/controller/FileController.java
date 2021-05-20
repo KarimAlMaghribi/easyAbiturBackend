@@ -1,9 +1,9 @@
 package de.rakia.easyAbiturService.controller;
 
-import de.rakia.easyAbiturService.model.MathGK_Exam;
-import de.rakia.easyAbiturService.model.MathLK_Exam;
-import de.rakia.easyAbiturService.model.PhysikGK_Exam;
-import de.rakia.easyAbiturService.model.PhysikLK_Exam;
+import de.rakia.easyAbiturService.model.MathGKExam;
+import de.rakia.easyAbiturService.model.MathLKExam;
+import de.rakia.easyAbiturService.model.PhysikGKExam;
+import de.rakia.easyAbiturService.model.PhysikLKExam;
 import de.rakia.easyAbiturService.service.FileStorageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("api/easyAbitur")
@@ -108,9 +107,9 @@ public class FileController {
 
   @CrossOrigin(origins = "http://localhost:4200")
   @GetMapping("/download/mathGK/{year}")
-  public ResponseEntity<byte[]> get_MathGK_Exam_File(String year) {
+  public ResponseEntity<byte[]> get_MathGK_Exam_File(@PathVariable String year) {
 
-    MathGK_Exam fileDB = storageService.getMathGK_Exam(Integer.parseInt(year));
+    MathGKExam fileDB = storageService.getMathGK_Exam(Integer.parseInt(year));
 
     return ResponseEntity.ok()
       .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + fileDB.getPdf() + "\"")
@@ -119,9 +118,9 @@ public class FileController {
 
   @CrossOrigin(origins = "http://localhost:4200")
   @GetMapping("/download/mathLK/{year}")
-  public ResponseEntity<byte[]> get_MathLK_Exam_File(String year) {
+  public ResponseEntity<byte[]> get_MathLK_Exam_File(@PathVariable String year) {
 
-    MathLK_Exam fileDB = storageService.getMathLK_Exam(Integer.parseInt(year));
+    MathLKExam fileDB = storageService.getMathLK_Exam(Integer.parseInt(year));
 
     return ResponseEntity.ok()
       .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + fileDB.getPdf() + "\"")
@@ -130,9 +129,9 @@ public class FileController {
 
   @CrossOrigin(origins = "http://localhost:4200")
   @GetMapping("/download/physikGK/{year}")
-  public ResponseEntity<byte[]> get_PhysikGK_Exam_File(String year) {
+  public ResponseEntity<byte[]> get_PhysikGK_Exam_File(@PathVariable String year) {
 
-    PhysikGK_Exam fileDB = storageService.getPhysikGK_Exam(Integer.parseInt(year));
+    PhysikGKExam fileDB = storageService.getPhysikGK_Exam(Integer.parseInt(year));
 
     return ResponseEntity.ok()
       .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + fileDB.getPdf() + "\"")
@@ -141,9 +140,9 @@ public class FileController {
 
   @CrossOrigin(origins = "http://localhost:4200")
   @GetMapping("/download/physikLK/{year}")
-  public ResponseEntity<byte[]> get_PhysikLK_Exam_File(String year) {
+  public ResponseEntity<byte[]> get_PhysikLK_Exam_File(@PathVariable String year) {
 
-    PhysikLK_Exam fileDB = storageService.getPhysikLK_Exam(Integer.parseInt(year));
+    PhysikLKExam fileDB = storageService.getPhysikLK_Exam(Integer.parseInt(year));
 
     return ResponseEntity.ok()
       .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + fileDB.getPdf() + "\"")

@@ -9,8 +9,8 @@ import javax.persistence.*;
 @Entity
 @Getter
 @Setter
-@Table(name = "physikLK_Exam")
-public class PhysikLK_Exam {
+@Table(name = "mathGK_Exam")
+public class MathGKExam {
   @Id
   @GeneratedValue(generator = "uuid2")
   @GenericGenerator(name = "uuid2", strategy = "org.hibernate.id.UUIDGenerator")

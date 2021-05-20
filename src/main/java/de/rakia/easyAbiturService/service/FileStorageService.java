@@ -1,18 +1,12 @@
 package de.rakia.easyAbiturService.service;
 
-import de.rakia.easyAbiturService.dto.response.ResponseFileMessage;
 import de.rakia.easyAbiturService.model.*;
 import de.rakia.easyAbiturService.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
-import java.util.List;
-import java.util.stream.Stream;
 
 /*
 * #########################################################################################################
@@ -74,7 +68,7 @@ public class FileStorageService {
   public void storeMathLK_Exam
     (MultipartFile file, String ident_Id, int year) throws IOException {
     if(!mathLK_exam_repository.existsById(ident_Id)){
-      MathLK_Exam mathLK_Exam = new MathLK_Exam();
+      MathLKExam mathLK_Exam = new MathLKExam();
 ;
       mathLK_Exam.setId(ident_Id);
       mathLK_Exam.setPdf(new FileDB(file.getName(),file.getContentType(), file.getBytes() ));
@@ -87,7 +81,7 @@ public class FileStorageService {
   public void storeMathGK_Exam
     (MultipartFile file, String ident_Id, int year) throws IOException {
     if(!mathGK_exam_repository.existsById(ident_Id)){
-      MathGK_Exam mathGK_Exam = new MathGK_Exam();
+      MathGKExam mathGK_Exam = new MathGKExam();
 
       mathGK_Exam.setId(ident_Id);
       mathGK_Exam.setPdf(new FileDB(file.getName(),file.getContentType(), file.getBytes() ));
@@ -100,7 +94,7 @@ public class FileStorageService {
   public void storePhysikGK_Exam
     (MultipartFile file, String ident_Id, int year) throws IOException {
     if(!physikGK_exam_repository.existsById(ident_Id)){
-      PhysikGK_Exam physikGK_Exam = new PhysikGK_Exam();
+      PhysikGKExam physikGK_Exam = new PhysikGKExam();
       physikGK_Exam.setPdf(new FileDB(file.getName(),file.getContentType(), file.getBytes() ));
       physikGK_Exam.setId(ident_Id);
       physikGK_Exam.setYear(year);
@@ -112,7 +106,7 @@ public class FileStorageService {
   public void storePhysikLK_Exam
     (MultipartFile file, String ident_Id, int year) throws IOException {
     if(!physikLK_exam_repository.existsById(ident_Id)){
-      PhysikLK_Exam physikLK_Exam = new PhysikLK_Exam();
+      PhysikLKExam physikLK_Exam = new PhysikLKExam();
       physikLK_Exam.setId(ident_Id);
       physikLK_Exam.setPdf(new FileDB(file.getName(),file.getContentType(), file.getBytes() ));
       physikLK_Exam.setYear(year);
@@ -120,23 +114,23 @@ public class FileStorageService {
     }
   }
 
-  public MathGK_Exam getMathGK_Exam(int year) {
-    MathGK_Exam exam = mathGK_exam_repository.findByYear(year);
+  public MathGKExam getMathGK_Exam(int year) {
+    MathGKExam exam = mathGK_exam_repository.findByYear(year);
     return exam;
   }
 
-  public MathLK_Exam getMathLK_Exam(int year) {
-    MathLK_Exam exam = mathLK_exam_repository.findByYear(year);
+  public MathLKExam getMathLK_Exam(int year) {
+    MathLKExam exam = mathLK_exam_repository.findByYear(year);
     return exam;
   }
 
-  public PhysikGK_Exam getPhysikGK_Exam(int year) {
-    PhysikGK_Exam exam = physikGK_exam_repository.findByYear(year);
+  public PhysikGKExam getPhysikGK_Exam(int year) {
+    PhysikGKExam exam = physikGK_exam_repository.findByYear(year);
     return exam;
   }
 
-  public PhysikLK_Exam getPhysikLK_Exam(int year) {
-    PhysikLK_Exam exam = physikLK_exam_repository.findByYear(year);
+  public PhysikLKExam getPhysikLK_Exam(int year) {
+    PhysikLKExam exam = physikLK_exam_repository.findByYear(year);
     return exam;
   }
 }

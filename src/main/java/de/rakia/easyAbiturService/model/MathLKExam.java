@@ -1,5 +1,6 @@
 package de.rakia.easyAbiturService.model;
 
+
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
@@ -9,8 +10,8 @@ import javax.persistence.*;
 @Entity
 @Getter
 @Setter
-@Table(name = "mathGK_Exam")
-public class MathGK_Exam {
+@Table(name = "mathLK_Exam")
+public class MathLKExam {
   @Id
   @GeneratedValue(generator = "uuid2")
   @GenericGenerator(name = "uuid2", strategy = "org.hibernate.id.UUIDGenerator")
